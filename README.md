@@ -1,46 +1,48 @@
-# 0-1-knapsack
-public class Classroom {
+Hepatitis C Prediction using Machine Learning
+About
 
-    public static int knapsackTab(int[] val, int[] wt, int W) {
+This project uses machine learning to predict Hepatitis C using official medical data. The main idea is to test different ML models and see which one performs best for early detection.
 
-        int n = val.length;
+Dataset
 
-        // dp[i][j] = max value using first i items with capacity j
-        int[][] dp = new int[n + 1][W + 1];
+Source: UCI Machine Learning Repository (official public data)
 
-        // Initialization already 0 by default
-        // dp[i][0] = 0  (0 capacity)
-        // dp[0][j] = 0  (0 items)
+Includes age, gender, and liver blood test values
 
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < W + 1; j++) {
+Output: Healthy / Hepatitis / Fibrosis / Cirrhosis
 
-                int v = val[i - 1];   // value of current item
-                int w = wt[i - 1];    // weight of current item
+Models Used
 
-                // valid case
-                if (w <= j) {
-                    int include = v + dp[i - 1][j - w];
-                    int exclude = dp[i - 1][j];
-                    dp[i][j] = Math.max(include, exclude);
-                } 
-                // not valid
-                else {
-                    dp[i][j] = dp[i - 1][j];
-                }
-            }
-        }
+Logistic Regression
 
-        return dp[n][W];
-    }
+Decision Tree
 
-    public static void main(String[] args) {
+Random Forest
 
-        int[] val = {15, 14, 10, 45, 30};
-        int[] wt  = {2, 5, 1, 3, 4};
-        int W = 7;
+SVM
 
-        int ans = knapsackTab(val, wt, W);
-        System.out.println("Maximum value in Knapsack = " + ans);
-    }
-}
+KNN
+
+Naive Bayes
+
+Gradient Boosting
+
+How it Works
+
+Load and clean the dataset
+
+Train multiple ML models
+
+Compare results using accuracy and other metrics
+
+Tools
+
+Python
+
+Pandas, NumPy
+
+Scikit-learn
+
+Result
+
+Random Forest performed the best. This shows machine learning can help in early Hepatitis C detection.
